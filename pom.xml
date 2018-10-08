@@ -17,6 +17,7 @@
   
   <modules>
 	<module>JavaPuzzles</module>
+	<module>DataStructuresAlgorithms</module>
   </modules>
   
 </project>
