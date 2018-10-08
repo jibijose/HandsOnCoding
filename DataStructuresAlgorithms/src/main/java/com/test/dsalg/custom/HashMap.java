@@ -1,8 +1,6 @@
 package com.test.dsalg.custom;
 
-import java.lang.reflect.Array;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,6 +9,7 @@ public class HashMap<K, V> implements Map<K, V> {
 	private int capacity;
 	private Entry<K, V>[] table;
 
+	@SuppressWarnings("all")
 	public HashMap() {
 		capacity = 16;
 		table = new Entry[capacity];
