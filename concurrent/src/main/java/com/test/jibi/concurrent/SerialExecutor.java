@@ -10,12 +10,20 @@ public class SerialExecutor implements Executor {
 	Executor executor;
 	Runnable active;
 
+	public SerialExecutor(Executor executor) {
+		this.executor = executor;
+	}
+
 	@Override
 	public synchronized void execute(Runnable command) {
 		tasks.offer(new Runnable() {
 			@Override
 			public void run() {
-				command.run();
+				try {
+					command.run();
+				} finally {
+					scheduleNext();
+				}
 			}
 		});
 
