@@ -1,13 +1,11 @@
 package com.test.dsalg.company.treeparentcommon;
 
-public class BinaryTree {
+public class BinaryTree<T extends Comparable<T>> {
 
-	// Root of Binary Tree
-	Node root;
+	Node<T> root;
 
-	// Constructors
-	BinaryTree(int key) {
-		root = new Node(key);
+	BinaryTree(T data) {
+		root = new Node<>(data);
 	}
 
 	BinaryTree() {

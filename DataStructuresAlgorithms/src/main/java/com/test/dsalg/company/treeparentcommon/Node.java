@@ -1,12 +1,12 @@
 package com.test.dsalg.company.treeparentcommon;
 
-public class Node {
+public class Node<T extends Comparable<T>>  {
 
-	int key;
-	public Node left, right;
+	T data;
+	public Node<T> left, right;
 
-	public Node(int item) {
-		key = item;
+	public Node(T item) {
+		data = item;
 		left = right = null;
 	}
 
