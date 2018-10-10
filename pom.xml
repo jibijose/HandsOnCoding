@@ -19,6 +19,7 @@
 	<module>JavaPuzzles</module>
 	<module>DataStructuresAlgorithms</module>
 	<module>concurrent</module>
+	<module>FunctionalCheck</module>
   </modules>
   
   <dependencies>
