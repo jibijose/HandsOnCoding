@@ -1,10 +1,14 @@
 package com.test.kpn;
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.test.kpn.model.KpnStatus;
 import com.test.kpn.selenium.ChromeEnvironment;
 import com.test.kpn.selenium.CustomChromeDriver;
 
@@ -34,5 +38,10 @@ public class ApplicationConfiguration {
 		}
 
 		return new CustomChromeDriver(chromeEnvironment, chromeOptions);
+	}
+
+	@Bean
+	public BlockingQueue<KpnStatus> kpnStatusStreamQueue() {
+		return new LinkedBlockingQueue<KpnStatus>();
 	}
 }
