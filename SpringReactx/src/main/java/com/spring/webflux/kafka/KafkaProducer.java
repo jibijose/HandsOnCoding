@@ -12,7 +12,7 @@ public class KafkaProducer {
 	@Autowired
 	private KafkaTemplate<String, KpnStatus> kafkaTemplate;
 
-	public void sendKpnStatus(String name) {
-		kafkaTemplate.send("test-topic", new KpnStatus(name));
+	public void sendKpnStatus(KpnStatus kpnStatus) {
+		kafkaTemplate.send("test-topic", kpnStatus);
 	}
 }

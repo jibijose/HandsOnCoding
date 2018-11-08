@@ -9,7 +9,7 @@ import com.spring.webflux.model.KpnStatus;
 
 @Service
 public class KafkaConsumer {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
 
 	@KafkaListener(topics = "test-topic", groupId = "group_text")
