@@ -1,4 +1,4 @@
-package com.spring.webflux;
+package com.test.kpn;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.spring.webflux.model.KpnStatus;
+import com.test.kpn.model.KpnStatus;
 
 @Configuration
 public class KakfaConfiguration {

@@ -1,4 +1,4 @@
-package com.spring.webflux.selenium;
+package com.test.kpn.selenium;
 
 import javax.annotation.PostConstruct;
 

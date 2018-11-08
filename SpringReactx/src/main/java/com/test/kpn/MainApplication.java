@@ -1,4 +1,4 @@
-package com.spring.webflux;
+package com.test.kpn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

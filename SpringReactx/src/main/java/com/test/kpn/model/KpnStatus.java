@@ -1,4 +1,4 @@
-package com.spring.webflux.model;
+package com.test.kpn.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

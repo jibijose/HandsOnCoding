@@ -1,4 +1,4 @@
-package com.spring.webflux.service;
+package com.test.kpn.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.webflux.model.KpnBus;
-import com.spring.webflux.model.KpnStatus;
+import com.test.kpn.model.KpnBus;
+import com.test.kpn.model.KpnStatus;
 
 @Service
 public class KpnService {

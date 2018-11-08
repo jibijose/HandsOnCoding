@@ -1,4 +1,4 @@
-package com.spring.webflux.scheduler;
+package com.test.kpn.scheduler;
 
 import java.util.Optional;
 
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.spring.webflux.kafka.KafkaProducer;
-import com.spring.webflux.model.KpnStatus;
-import com.spring.webflux.service.KpnService;
+import com.test.kpn.kafka.KafkaProducer;
+import com.test.kpn.model.KpnStatus;
+import com.test.kpn.service.KpnService;
 
 @Component
 public class ScheduledTasks {

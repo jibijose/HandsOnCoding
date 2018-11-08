@@ -1,12 +1,12 @@
-package com.spring.webflux;
+package com.test.kpn;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.spring.webflux.selenium.ChromeEnvironment;
-import com.spring.webflux.selenium.CustomChromeDriver;
+import com.test.kpn.selenium.ChromeEnvironment;
+import com.test.kpn.selenium.CustomChromeDriver;
 
 @Configuration
 public class ApplicationConfiguration {

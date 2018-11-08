@@ -1,4 +1,4 @@
-package com.spring.webflux;
+package com.test.kpn;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

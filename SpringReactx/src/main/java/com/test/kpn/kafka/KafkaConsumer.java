@@ -1,11 +1,11 @@
-package com.spring.webflux.kafka;
+package com.test.kpn.kafka;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.spring.webflux.model.KpnStatus;
+import com.test.kpn.model.KpnStatus;
 
 @Service
 public class KafkaConsumer {
