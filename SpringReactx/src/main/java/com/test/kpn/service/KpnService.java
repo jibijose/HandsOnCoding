@@ -23,18 +23,19 @@ public class KpnService {
 	@Autowired
 	private WebDriver webDriver;
 
-	public Optional<KpnStatus> fetchKpnStatus() {
+	public Optional<KpnStatus> fetchKpnStatus(String travelFromPlace, String travelToPlace,
+			String travelDateFormatted) {
 
 		try {
 			webDriver.get("http://www.kpntravels.in");
 			LOGGER.info("Title : {}", webDriver.getTitle());
 
-			webDriver.findElement(By.id("WebContent_ddlFrom")).sendKeys("Ernakulam");
-			webDriver.findElement(By.id("WebContent_ddlTo")).sendKeys("Bangalore");
+			webDriver.findElement(By.id("WebContent_ddlFrom")).sendKeys(travelFromPlace);
+			webDriver.findElement(By.id("WebContent_ddlTo")).sendKeys(travelToPlace);
 			WebElement dateWebElement = webDriver.findElement(By.id("WebContent_txtTravelDate"));
 			((JavascriptExecutor) webDriver).executeScript("arguments[0].removeAttribute('readonly','readonly')",
 					dateWebElement);
-			dateWebElement.sendKeys("Thursday, 08 November - 2018");
+			dateWebElement.sendKeys(travelDateFormatted);
 			webDriver.findElement(By.xpath("//input[@value='Plan Trip']")).click();
 			LOGGER.info("Title : {}", webDriver.getTitle());
 
