@@ -11,19 +11,19 @@ import com.example.springboot.service.SystemNameService;
 @RestController
 public class HealthController {
 
-	@Autowired
-	public SystemNameService systemNameService;
+  @Autowired
+  public SystemNameService systemNameService;
 
-	@RequestMapping("/customisup")
-	public final String isServiceUp() {
+  @RequestMapping("/customisup")
+  public final String isServiceUp() {
 
-		String systemName = systemNameService.getSystemName();
-		return "System " + systemName + " is up. Time is " + new Date();
-	}
+    String systemName = systemNameService.getSystemName();
+    return "System " + systemName + " is up. Time is " + new Date();
+  }
 
-	@RequestMapping("/health")
-	public String health() {
-		return "Health from Spring Boot!";
-	}
+  @RequestMapping("/health")
+  public String health() {
+    return "Health from Spring Boot!";
+  }
 
 }

@@ -11,10 +11,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class Application {
 
-    public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
+  public static void main(String[] args) {
+    ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
 
-        //Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
-    }
+    //Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
+  }
 
 }
