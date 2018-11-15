@@ -32,12 +32,12 @@ public class HealthControllerMockTest {
 
 	@Before
 	public void setUp() throws Exception {
-		mvc = MockMvcBuilders.standaloneSetup(new HealthController()).build();
+		mvc = MockMvcBuilders.standaloneSetup(healthController).build();
 	}
 
 	@Test
 	public void getIsUp() throws Exception {
-		when(systemServiceName.getSystemName()).thenReturn("Mock System Name");
+		//when(systemServiceName.getSystemName()).thenReturn("Mock System Name");
 		
 		healthController.isServiceUp();
 	}

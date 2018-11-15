@@ -7,6 +7,10 @@
 	<groupId>com.test</groupId>
 	<artifactId>jdk11playground</artifactId>
 	<version>1.0.0</version>
+	<modules>
+		<module>MyUtils</module>
+		<module>WebApplication</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -15,10 +19,7 @@
 		<version>2.0.6.RELEASE</version>
 	</parent>
 	
-	<modules>
-		<module>StringUtil</module>
-		<module>WebApplication</module>
-	</modules>
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -77,13 +78,14 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>2.23.0</version>
 			<scope>test</scope>
 		</dependency>
+
 
 	</dependencies>
 
