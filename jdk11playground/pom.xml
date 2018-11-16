@@ -12,6 +12,7 @@
   <modules>
     <module>Astro</module>
     <module>Greetings</module>
+    <module>spring-petclinic</module>
   </modules>
 
   <parent>
