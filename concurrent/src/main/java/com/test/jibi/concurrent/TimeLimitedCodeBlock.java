@@ -42,6 +42,6 @@ public class TimeLimitedCodeBlock {
         throw new IllegalStateException(throwable);
       }
     }
-    
+
   }
 }
