@@ -59,15 +59,30 @@ public class BinarySearchTree {
 
   public static void main(String[] args) {
     List<Integer> listElements = Arrays.asList(10, 30, 60, 70, 40, 50, 80, 20);
-    //Collections.sort(listElements);
+    Collections.sort(listElements);
 
     BinarySearchTree tree = new BinarySearchTree(listElements);
     //tree.insertNodeKeys(tree);
 
     tree.inorder();
     tree.root = tree.buildTree(tree.root);
-    tree.delete(50);
+    //tree.delete(50);
+    //tree.inorder();
+
+    tree.root = tree.buildMirror(tree.root);
     tree.inorder();
+  }
+
+  Node buildMirror(Node root) {
+    if (root == null) {
+      return null;
+    }
+    Node nodeTemp = root.left;
+    root.left = root.right;
+    root.right = nodeTemp;
+    buildMirror(root.left);
+    buildMirror(root.right);
+    return root;
   }
 
   Node buildTree(Node root) {
