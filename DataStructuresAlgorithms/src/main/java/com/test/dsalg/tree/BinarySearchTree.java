@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 public class BinarySearchTree {
 
-  class Node {
+  class Node implements Comparable<Node> {
 
     int key;
     Node left, right;
@@ -15,6 +16,20 @@ public class BinarySearchTree {
     public Node(int item) {
       key = item;
       left = right = null;
+    }
+
+    @Override
+    public int compareTo(Node other) {
+      if (other == null) {
+        return 1;
+      }
+      if (this.key > other.key) {
+        return 1;
+      } else if (this.key < other.key) {
+        return -1;
+      } else {
+        return 0;
+      }
     }
   }
 
@@ -25,7 +40,7 @@ public class BinarySearchTree {
   }
 
   BinarySearchTree(List<Integer> listElements) {
-    root = ALtoBST(listElements, 0, listElements.size()-1);
+    root = ALtoBST(listElements, 0, listElements.size() - 1);
   }
 
   public void insert(int key) {
@@ -43,16 +58,46 @@ public class BinarySearchTree {
   }
 
   public static void main(String[] args) {
-    List<Integer> listElements = Arrays.asList(10,30,60,70,40,50,80,20);
-    Collections.sort(listElements);
+    List<Integer> listElements = Arrays.asList(10, 30, 60, 70, 40, 50, 80, 20);
+    //Collections.sort(listElements);
 
     BinarySearchTree tree = new BinarySearchTree(listElements);
     //tree.insertNodeKeys(tree);
 
     tree.inorder();
+    tree.root = tree.buildTree(tree.root);
     tree.delete(50);
     tree.inorder();
   }
+
+  Node buildTree(Node root) {
+    Vector<Node> nodes = new Vector<>();
+    storeBSTNodes(root, nodes);
+    Collections.sort(nodes);
+    return buildTreeUtil(nodes, 0, nodes.size() - 1);
+  }
+
+  void storeBSTNodes(Node root, Vector<Node> nodes) {
+    if (root == null) {
+      return;
+    }
+    storeBSTNodes(root.left, nodes);
+    nodes.add(root);
+    storeBSTNodes(root.right, nodes);
+  }
+
+  Node buildTreeUtil(Vector<Node> nodes, int start, int end) {
+    if (start > end) {
+      return null;
+    }
+
+    int mid = (start + end) / 2;
+    Node node = nodes.get(mid);
+    node.left = buildTreeUtil(nodes, start, mid - 1);
+    node.right = buildTreeUtil(nodes, mid + 1, end);
+    return node;
+  }
+
 
   private void insertNodeKeys(BinarySearchTree tree) {
      /* Let us create following BST
@@ -131,15 +176,15 @@ public class BinarySearchTree {
   }
 
   Node ALtoBST(List<Integer> list, int start, int end) {
-    if ( start > end ) {
+    if (start > end) {
       return null;
     }
 
-    int mid = (start+end)/2;
+    int mid = (start + end) / 2;
 
     Node root = new Node(list.get(mid));
-    root.left = ALtoBST(list, start, mid-1);
-    root.right = ALtoBST(list, mid+1, end);
+    root.left = ALtoBST(list, start, mid - 1);
+    root.right = ALtoBST(list, mid + 1, end);
     return root;
   }
 }
