@@ -1,5 +1,10 @@
 package com.test.dsalg.tree;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class BinarySearchTree {
 
   class Node {
@@ -19,6 +24,10 @@ public class BinarySearchTree {
     root = null;
   }
 
+  BinarySearchTree(List<Integer> listElements) {
+    root = ALtoBST(listElements, 0, listElements.size()-1);
+  }
+
   public void insert(int key) {
     root = insertRec(root, key);
   }
@@ -34,8 +43,12 @@ public class BinarySearchTree {
   }
 
   public static void main(String[] args) {
-    BinarySearchTree tree = new BinarySearchTree();
-    tree.insertNodeKeys(tree);
+    List<Integer> listElements = Arrays.asList(10,30,60,70,40,50,80,20);
+    Collections.sort(listElements);
+
+    BinarySearchTree tree = new BinarySearchTree(listElements);
+    //tree.insertNodeKeys(tree);
+
     tree.inorder();
     tree.delete(50);
     tree.inorder();
@@ -115,5 +128,18 @@ public class BinarySearchTree {
       root = root.left;
     }
     return minv;
+  }
+
+  Node ALtoBST(List<Integer> list, int start, int end) {
+    if ( start > end ) {
+      return null;
+    }
+
+    int mid = (start+end)/2;
+
+    Node root = new Node(list.get(mid));
+    root.left = ALtoBST(list, start, mid-1);
+    root.right = ALtoBST(list, mid+1, end);
+    return root;
   }
 }
