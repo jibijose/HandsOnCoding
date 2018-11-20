@@ -1,4 +1,4 @@
-package com.test.dsalg.tree;
+package com.test.dsalg.bst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +43,7 @@ public class BinarySearchTreeSumCheck extends BinarySearchTree {
     if (start > end || sum < 0 || solution.size() > 2) {
       return;
     }
-    
+
     if (sum == 0) {
       System.out.println("[" + solution + "]");
       return;

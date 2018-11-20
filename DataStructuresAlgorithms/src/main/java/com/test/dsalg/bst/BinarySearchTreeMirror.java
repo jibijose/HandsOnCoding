@@ -1,4 +1,4 @@
-package com.test.dsalg.tree;
+package com.test.dsalg.bst;
 
 import java.util.Arrays;
 import java.util.Collections;
