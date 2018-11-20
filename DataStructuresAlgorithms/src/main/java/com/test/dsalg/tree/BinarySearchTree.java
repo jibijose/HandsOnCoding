@@ -11,7 +11,7 @@ public class BinarySearchTree {
   class Node implements Comparable<Node> {
 
     int key;
-    Node left, right;
+    protected Node left, right;
 
     public Node(int item) {
       key = item;
@@ -33,7 +33,7 @@ public class BinarySearchTree {
     }
   }
 
-  Node root;
+  protected Node root;
 
   BinarySearchTree() {
     root = null;
@@ -54,7 +54,9 @@ public class BinarySearchTree {
   public void inorder() {
     System.out.println();
     inorderRec(root);
-    System.out.print(" Root=" + root.key);
+    if (root != null) {
+      System.out.print(" Root=" + root.key);
+    }
   }
 
   public static void main(String[] args) {
@@ -66,24 +68,12 @@ public class BinarySearchTree {
 
     tree.inorder();
     tree.root = tree.buildTree(tree.root);
-    //tree.delete(50);
-    //tree.inorder();
 
-    tree.root = tree.buildMirror(tree.root);
+    //tree.delete(50);
     tree.inorder();
   }
 
-  Node buildMirror(Node root) {
-    if (root == null) {
-      return null;
-    }
-    Node nodeTemp = root.left;
-    root.left = root.right;
-    root.right = nodeTemp;
-    buildMirror(root.left);
-    buildMirror(root.right);
-    return root;
-  }
+
 
   Node buildTree(Node root) {
     Vector<Node> nodes = new Vector<>();
@@ -201,5 +191,10 @@ public class BinarySearchTree {
     root.left = ALtoBST(list, start, mid - 1);
     root.right = ALtoBST(list, mid + 1, end);
     return root;
+  }
+
+
+  private Node buildDoubleLinkedList(Node root) {
+    return null;
   }
 }
