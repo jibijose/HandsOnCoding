@@ -32,7 +32,7 @@ public class LongestPathBetweenAnyPairMatrix {
     private void findMaxDistance() {
         for (int cityIndex = 0; cityIndex < numOfCities; cityIndex++) {
             visited[cityIndex] = true;
-            currentPathCities.add(cityIndex);
+            currentPathCities.add(cityIndex+1);
             findMaxDistanceUtil(cityIndex);
             visited[cityIndex] = false;
             currentPathCities.pop();
@@ -40,13 +40,13 @@ public class LongestPathBetweenAnyPairMatrix {
     }
 
     private void findMaxDistanceUtil(int cityIndex) {
-        System.out.println("Checking cityIndex=" + cityIndex + " CurrentMaxDistance=" + currentMaxDistance + " currentPathCities=" + currentPathCities + " currentPathRoads=" + currentPathRoads);
+        //System.out.println("Checking cityIndex=" + cityIndex + " CurrentMaxDistance=" + currentMaxDistance + " currentPathCities=" + currentPathCities + " currentPathRoads=" + currentPathRoads);
         boolean endCity = true;
         for (int roadIndex = 0; roadIndex < numOfCities; roadIndex++) {
             if (graph[cityIndex][roadIndex] != 0 && !visited[roadIndex]) {
                 endCity = false;
                 visited[roadIndex] = true;
-                currentPathCities.add(roadIndex);
+                currentPathCities.add(roadIndex+1);
                 currentPathRoads.add(graph[cityIndex][roadIndex]);
                 currentMaxDistance = currentMaxDistance + graph[cityIndex][roadIndex];
                 findMaxDistanceUtil(roadIndex);
