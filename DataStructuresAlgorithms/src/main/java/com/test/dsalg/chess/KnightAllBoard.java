@@ -17,7 +17,7 @@ public class KnightAllBoard {
     }
 
     private void findSolutions() {
-        for( int i=0; i<BOARDSIZE; i++) {
+        for (int i = 0; i < BOARDSIZE; i++) {
             for (int j = 0; j < BOARDSIZE; j++) {
                 placeKnight(i, j);
             }
@@ -38,9 +38,11 @@ public class KnightAllBoard {
             return;
         }
 
-        List<Integer[]> nextMoves = findNextMoves(i, j);
-        for (Integer[] nextMove : nextMoves) {
-            placeKnight(nextMove[0], nextMove[1]);
+        int[][] nextMoves = findNextMoves(i, j);
+        for (int[] nextMove : nextMoves) {
+            if (nextMove != null) {
+                placeKnight(nextMove[0], nextMove[1]);
+            }
         }
 
         numOfMoves--;
@@ -64,14 +66,19 @@ public class KnightAllBoard {
     private static int[] KNIGHTONES = new int[]{-1, +1};
     private static int[] KNIGHTTWOS = new int[]{-2, +2};
 
-    private List<Integer[]> findNextMoves(int i, int j) {
-        List<Integer[]> nextMoves = new ArrayList<>();
+    private int[][] findNextMoves(int i, int j) {
+        //List<Integer[]> nextMoves = new ArrayList<>();
+        int[][] nextMoves = new int[8][];
+        int nextMovesIndex = 0;
         for (int x : KNIGHTONES) {
             for (int y : KNIGHTTWOS) {
                 int xNext = i + x;
                 int yNext = j + y;
                 if (!isOutOfBoard(xNext, yNext) && board[xNext][yNext] == 0) {
-                    nextMoves.add(new Integer[]{xNext, yNext});
+                    nextMoves[nextMovesIndex] = new int[2];
+                    nextMoves[nextMovesIndex][0] = xNext;
+                    nextMoves[nextMovesIndex][1] = yNext;
+                    nextMovesIndex++;
                 }
             }
         }
@@ -80,7 +87,10 @@ public class KnightAllBoard {
                 int xNext = i + x;
                 int yNext = j + y;
                 if (!isOutOfBoard(xNext, yNext) && board[xNext][yNext] == 0) {
-                    nextMoves.add(new Integer[]{xNext, yNext});
+                    nextMoves[nextMovesIndex] = new int[2];
+                    nextMoves[nextMovesIndex][0] = xNext;
+                    nextMoves[nextMovesIndex][1] = yNext;
+                    nextMovesIndex++;
                 }
             }
         }
