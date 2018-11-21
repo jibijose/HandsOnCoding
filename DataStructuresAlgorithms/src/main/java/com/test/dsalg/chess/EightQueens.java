@@ -24,7 +24,7 @@ public class EightQueens {
         if (i == BOARDSIZE) {
             numOfSolutions++;
             System.out.println("******************* SOLUTION " + numOfSolutions + " ******************************");
-            //printBoard();
+            printBoard();
             return;
         }
 
@@ -58,8 +58,13 @@ public class EightQueens {
     private void printBoard() {
         System.out.println("**************************************************************");
         for (int i = 0; i < BOARDSIZE; i++) {
+            System.out.print("|");
             for (int j = 0; j < BOARDSIZE; j++) {
-                System.out.print(boardStart[i][j] + " ");
+                if (boardStart[i][j] < 10) {
+                    System.out.print(" " + boardStart[i][j] + "|");
+                } else {
+                    System.out.print(boardStart[i][j] + "|");
+                }
             }
             System.out.println();
         }
