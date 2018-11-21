@@ -32,7 +32,7 @@ public class KnightAllBoard {
         if (numOfMoves == BOARDSIZE * BOARDSIZE) {
             numOfSolutions++;
             System.out.println("******************* SOLUTION " + numOfSolutions + " ******************************");
-            //printBoard();
+            printBoard();
             numOfMoves--;
             board[i][j] = 0;
             return;
