@@ -6,7 +6,7 @@ package com.test.dsalg.leetcode;
 
 public class RemoveNthLinkedList {
 
-    private Node root;Blo
+    private Node root;
 
     class Node {
         int data;
