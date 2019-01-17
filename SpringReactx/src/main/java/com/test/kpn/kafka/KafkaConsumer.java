@@ -18,7 +18,8 @@ public class KafkaConsumer {
 	@Autowired
 	private BlockingQueue<KpnStatus> kpnStatusStreamQueue;
 
-	@KafkaListener(topics = "test-topic", groupId = "group_json", containerFactory = "kpnStatusKafkaListenerFactory")
+	//@KafkaListener(topics = "test-topic", groupId = "group_json", containerFactory = "kpnStatusKafkaListenerFactory")
+	@KafkaListener(topics = "test-topic")
 	public void consumeJson(KpnStatus kpnStatus) {
 		try {
 			kpnStatusStreamQueue.put(kpnStatus);
