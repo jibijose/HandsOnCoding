@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +26,10 @@ public class GreetingHandler {
 
     public Flux<String> helloMultiple() {
         List<String> messages = Arrays.asList("Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6");
-        return Flux.fromIterable(messages);
+        return Flux.fromIterable(messages)
+                .flatMap(this::getPrime)
+               .delayElements(Duration.ofSeconds(2))
+                ;
 
 
         /*return Flux.create(fluxSink -> {
@@ -40,5 +44,20 @@ public class GreetingHandler {
                 }*//*
             }
         });*/
+    }
+
+    private Mono<String> getPrime(String in) {
+
+/*        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
+        return Mono
+                .delay(Duration.ofSeconds(1))
+                .map(lng -> lng.toString())
+
+                .map(lng -> in + lng);
     }
 }

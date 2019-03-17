@@ -15,7 +15,6 @@ public class StreamPublisher<T> implements Publisher<T> {
         this.streamSupplier = streamSupplier;
     }
 
-
     @Override
     public void subscribe(Subscriber<? super T> subscriber) {
         try {
@@ -26,4 +25,5 @@ public class StreamPublisher<T> implements Publisher<T> {
             subscriber.onError(e);
         }
     }
+
 }

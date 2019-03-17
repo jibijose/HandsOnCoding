@@ -2,6 +2,7 @@ package hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,14 @@ import java.util.stream.Stream;
 public class TemperatureController {
 
     Logger logger = LoggerFactory.getLogger(TemperatureController.class);
+
+    @Autowired
+    private GreetingHandler greetingHandler;
+
+    @GetMapping(value = "/alok", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<String> getAlok() {
+        return greetingHandler.helloMultiple();
+    }
 
     @GetMapping(value = "/temperatures", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Integer> getTemperatures() {
