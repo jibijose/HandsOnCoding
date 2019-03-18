@@ -10,7 +10,9 @@ import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class GreetingHandler {
@@ -26,38 +28,49 @@ public class GreetingHandler {
 
     public Flux<String> helloMultiple() {
         List<String> messages = Arrays.asList("Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6");
+        //List<String> messages = Arrays.asList("Hello1");
         return Flux.fromIterable(messages)
                 .flatMap(this::getPrime)
-               .delayElements(Duration.ofSeconds(2))
+                //.delayElements(Duration.ofSeconds(2))
                 ;
-
-
-        /*return Flux.create(fluxSink -> {
-            int numOfTimes = 0;
-            while (numOfTimes <= 10) {
-                numOfTimes++;
-                fluxSink.next("Hello, Spring " + numOfTimes);
-*//*                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException ie) {
-                    ie.printStackTrace();
-                }*//*
-            }
-        });*/
     }
+
+    public Flux<Mono<String>> helloMultipleAnother() {
+        List<String> messages = Arrays.asList("Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6");
+        //List<String> messages = Arrays.asList("Hello1");
+        return Flux.fromIterable(messages)
+                .flatMap(this::getPrimeAnother)
+                //.delayElements(Duration.ofSeconds(2))
+                ;
+    }
+
+    private static String MYSTRING = "JJ";
 
     private Mono<String> getPrime(String in) {
-
-/*        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
-        return Mono
-                .delay(Duration.ofSeconds(1))
-                .map(lng -> lng.toString())
-
-                .map(lng -> in + lng);
+        return Mono.delay(Duration.ofSeconds(3)).map(lng -> lng.toString() + "JJ").map(lng -> in + lng);
     }
+
+    private Mono<Mono<String>> getPrimeAnother(String in) {
+        Mono<String> delayMonoString = Mono.delay(Duration.ofSeconds(3)).map(lng -> lng.toString() + in);
+        return Mono.just(delayMonoString);
+    }
+
+    private boolean isPrime(int n, int i) {
+        // Base cases
+        if (n <= 2)
+            return (n == 2) ? true : false;
+        if (n % i == 0)
+            return false;
+        if (i * i > n)
+            return true;
+
+        // Check for next divisor
+        return isPrime(n, i + 1);
+    }
+
+    private int getRandNumber() {
+        Random rand = new Random(new Date().getTime());
+        return rand.nextInt();
+    }
+
 }
