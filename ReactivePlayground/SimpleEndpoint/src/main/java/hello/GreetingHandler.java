@@ -32,6 +32,18 @@ public class GreetingHandler {
                 );
     }
 
+    public String factorialResults(int maxPrimeCheckNum) {
+        int[] mynums = IntStream.range(1, maxPrimeCheckNum).toArray();
+        List<Integer> randNumbers = new ArrayList<Integer>();
+        Collections.addAll(randNumbers, Arrays.stream(mynums).boxed().toArray(Integer[]::new));
+
+        StringBuilder sb = new StringBuilder("");
+        for (Integer randNumber : randNumbers) {
+            sb.append(cpuWork(randNumber.intValue()));
+        }
+        return sb.toString();
+    }
+
     private String cpuWork(int n) {
         BigInteger factorial = findFactorial(new BigInteger(new Integer(n).toString()));
         String result = "Factorial of " + n + " is " + factorial.toString();

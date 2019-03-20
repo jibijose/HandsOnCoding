@@ -13,15 +13,16 @@ public class Greetings {
     @Autowired
     private GreetingHandler greetingHandler;
 
-    @GetMapping(value = "/hello/{maxPrimeCheckNum}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> hello(@PathVariable(value = "maxPrimeCheckNum") String maxPrimeCheckNum) {
-        return Flux.just("jibijose");
-        //return greetingHandler.factorialResultStream(Integer.parseInt(maxPrimeCheckNum));
+    @GetMapping(value = "/hellostream/{maxPrimeCheckNum}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<String> helloStream(@PathVariable(value = "maxPrimeCheckNum") String maxPrimeCheckNum) {
+        //return Flux.just("jibijose");
+        return greetingHandler.factorialResultStream(Integer.parseInt(maxPrimeCheckNum));
     }
 
-    @GetMapping(value = "/helloold/{maxPrimeCheckNum}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping(value = "/hello/{maxPrimeCheckNum}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String helloOld(@PathVariable(value = "maxPrimeCheckNum") String maxPrimeCheckNum) {
-        return "jibijose";
+        //return "jibijose";
+        return greetingHandler.factorialResults(Integer.parseInt(maxPrimeCheckNum));
     }
 
 

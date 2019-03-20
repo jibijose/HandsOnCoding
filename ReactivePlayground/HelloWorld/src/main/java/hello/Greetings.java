@@ -10,6 +10,11 @@ public class Greetings {
 
     @GetMapping(value = "/helloold/{maxPrimeCheckNum}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String helloOld(@PathVariable(value = "maxPrimeCheckNum") String maxPrimeCheckNum) {
+/*        try {
+            Thread.sleep(100);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }*/
         return "jibijose";
     }
 
