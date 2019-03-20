@@ -21,10 +21,10 @@ public class TemperatureController {
     @Autowired
     private GreetingHandler greetingHandler;
 
-    @GetMapping(value = "/alok", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+/*    @GetMapping(value = "/alok", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> getAlok() {
         return greetingHandler.helloMultiple();
-    }
+    }*/
 
     @GetMapping(value = "/temperatures", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Integer> getTemperatures() {

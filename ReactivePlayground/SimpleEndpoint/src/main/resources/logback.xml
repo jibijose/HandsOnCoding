@@ -5,9 +5,9 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <fieldNames>
                 <timestamp>timeStamp</timestamp>
+                <thread>thread</thread>
                 <message>message</message>
                 <logger>logger</logger>
-                <thread>thread</thread>
                 <level>level</level>
                 <levelValue>[ignore]</levelValue>
                 <version>[ignore]</version>
@@ -26,11 +26,11 @@
         <discardingThreshold>0</discardingThreshold>
     </appender>
 
-    <logger name="hello" additivity="false" level="DEBUG">
+    <logger name="hello" additivity="false" level="INFO">
         <appender-ref ref="AsyncConsoleAppender" />
     </logger>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="AsyncConsoleAppender" />
     </root>
 
