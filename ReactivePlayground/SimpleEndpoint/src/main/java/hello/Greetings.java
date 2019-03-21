@@ -20,7 +20,7 @@ public class Greetings {
     }
 
     @GetMapping(value = "/hello/{maxPrimeCheckNum}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String helloOld(@PathVariable(value = "maxPrimeCheckNum") String maxPrimeCheckNum) {
+    public String helloOld(@PathVariable(value = "maxPrimeCheckNum") String maxPrimeCheckNum) throws Exception {
         //return "jibijose";
         return greetingHandler.factorialResults(Integer.parseInt(maxPrimeCheckNum));
     }

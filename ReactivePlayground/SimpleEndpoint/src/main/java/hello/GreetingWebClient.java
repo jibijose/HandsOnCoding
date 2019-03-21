@@ -1,21 +1,28 @@
 package hello;
 
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+@Component
 public class GreetingWebClient {
 
-    private WebClient client = WebClient.create("http://localhost:8080");
+    public String getResult(int seconds) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject("http://localhost:9090/hellosecond/" + seconds, String.class);
+    }
 
-    private Mono<ClientResponse> result = client.get()
-            .uri("/hello")
-            .accept(MediaType.APPLICATION_STREAM_JSON)
-            .exchange();
+    public Mono<String> getResultStream(int seconds) {
+        WebClient client = WebClient.create("http://localhost:9090");
+        Mono<ClientResponse> result = client.get()
+                .uri("/hellosecond/" + seconds)
+                .accept(MediaType.TEXT_PLAIN)
+                .exchange();
 
-    public String getResult() {
-        return ">> result = " + result.flatMap(res -> res.bodyToMono(String.class)).block();
+        return result.flatMap(res -> res.bodyToMono(String.class));
     }
 
 }
