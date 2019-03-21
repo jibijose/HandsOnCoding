@@ -25,7 +25,7 @@ public class GreetingHandler {
 
 
     public Flux<String> factorialResultStream(int maxPrimeCheckNum) {
-        int[] mynums = IntStream.range(1, maxPrimeCheckNum).toArray();
+        int[] mynums = IntStream.rangeClosed(1, maxPrimeCheckNum).toArray();
         List<Integer> randNumbers = new ArrayList<Integer>();
         Collections.addAll(randNumbers, Arrays.stream(mynums).boxed().toArray(Integer[]::new));
 
@@ -42,7 +42,7 @@ public class GreetingHandler {
     }
 
     public String factorialResults(int maxPrimeCheckNum) throws Exception {
-        int[] mynums = IntStream.range(1, maxPrimeCheckNum).toArray();
+        int[] mynums = IntStream.rangeClosed(1, maxPrimeCheckNum).toArray();
         List<Integer> randNumbers = new ArrayList<Integer>();
         Collections.addAll(randNumbers, Arrays.stream(mynums).boxed().toArray(Integer[]::new));
 
