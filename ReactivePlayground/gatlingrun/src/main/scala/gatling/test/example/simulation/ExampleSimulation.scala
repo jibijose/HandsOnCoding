@@ -10,10 +10,7 @@ class ExampleSimulation extends Simulation {
   val httpConf = http.baseUrl(baseUrl)
   val rootEndPointUsers = scenario("Root end point calls")
     .exec(http("root end point")
-      .post("/")
-      .header("Content-Type", "application/json")
-      .header("Accept-Encoding", "gzip")
-      .body(StringBody("{}"))
+      .get("/")
       .check(status.is(200))
     )
   setUp(rootEndPointUsers.inject(
