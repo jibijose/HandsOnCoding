@@ -16,9 +16,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 
 @Component
-public class GreetingHandler {
+public class GreetingService {
 
-    private static Logger LOGGER = Loggers.getLogger(GreetingHandler.class);
+    private static Logger LOGGER = Loggers.getLogger(GreetingService.class);
 
     @Autowired
     private GreetingWebClient greetingWebClient;

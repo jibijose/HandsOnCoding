@@ -22,8 +22,8 @@ public class GreetingRouterTest {
     public void testHello() {
         webTestClient
                 // Create a GET request to test an endpoint
-                .get().uri("/hello")
-                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .get().uri("/hello/1")
+                .accept(MediaType.TEXT_PLAIN)
                 .exchange()
                 // and use the dedicated DSL to test assertions against the response
                 .expectStatus().isOk()
