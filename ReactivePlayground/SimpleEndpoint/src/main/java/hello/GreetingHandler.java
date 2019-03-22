@@ -46,8 +46,27 @@ public class GreetingHandler {
         List<Integer> randNumbers = new ArrayList<Integer>();
         Collections.addAll(randNumbers, Arrays.stream(mynums).boxed().toArray(Integer[]::new));
 
-        StringBuilder sb = new StringBuilder("");
+        return getResults(randNumbers, true);
+    }
 
+    private String getResults(List<Integer> randNumbers, Boolean useFuture) throws Exception {
+        if (useFuture) {
+            return getResultsFuture(randNumbers);
+        }
+
+        return getResultsBlocked(randNumbers);
+    }
+
+    private String getResultsBlocked(List<Integer> randNumbers) {
+        StringBuilder sb = new StringBuilder("");
+        for (Integer randNumber : randNumbers) {
+            sb.append(greetingWebClient.getResult(randNumber.intValue()));
+        }
+        return sb.toString();
+    }
+
+    private String getResultsFuture(List<Integer> randNumbers) throws Exception {
+        StringBuilder sb = new StringBuilder("");
         CompletableFuture<String> completableFutures[] = new CompletableFuture[randNumbers.size()];
         int index = 0;
         for (Integer randNumber : randNumbers) {
@@ -60,7 +79,6 @@ public class GreetingHandler {
             sb.append(completableFutures[index].get());
             index++;
         }
-
         return sb.toString();
     }
 
