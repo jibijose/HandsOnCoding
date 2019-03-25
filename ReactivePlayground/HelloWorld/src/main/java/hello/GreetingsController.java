@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Duration;
 
 @RestController
 public class GreetingsController {
@@ -46,9 +45,16 @@ public class GreetingsController {
     @GetMapping(value = "/hellodb", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ReactiveUser> helloDbStreamAll() {
         LOGGER.info("Database fetch starting");
-        Flux<ReactiveUser> reactiveUsers = reactiveUserRepository.findAll();
+
+        Mono<ReactiveUser> flux1 = reactiveUserRepository.findById("user::1");
+        Mono<ReactiveUser> flux1Delayed = Mono.delay(Duration.ofSeconds(2)).then(flux1);
+        Mono<ReactiveUser> flux2 = reactiveUserRepository.findById("user::2");
+        Mono<ReactiveUser> flux2Delayed = Mono.delay(Duration.ofSeconds(1)).then(flux2);
+
+        Flux<ReactiveUser> reactiveUsersDelayed = Flux.merge(flux1Delayed, flux2Delayed);
+
         LOGGER.info("Database fetch ending");
-        return reactiveUsers;
+        return reactiveUsersDelayed;
     }
 
 
