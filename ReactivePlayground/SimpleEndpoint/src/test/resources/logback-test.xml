@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="AsyncConsoleAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+        <queueSize>10000</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+    </appender>
+
+    <logger name="hello" additivity="false" level="DEBUG">
+        <appender-ref ref="AsyncConsoleAppender"/>
+    </logger>
+    <logger name="pubsub" additivity="false" level="DEBUG">
+        <appender-ref ref="AsyncConsoleAppender"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="AsyncConsoleAppender"/>
+    </root>
+
+
+</configuration>

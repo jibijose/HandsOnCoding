@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
+import reactor.util.Logger;
+import reactor.util.Loggers;
 
 import java.time.Duration;
 
@@ -13,6 +15,8 @@ import static org.hamcrest.Matchers.startsWith;
 
 @RunWith(SpringRunner.class)
 public class PubOnSubOnTest {
+
+    private static Logger LOGGER = Loggers.getLogger(PubOnSubOnTest.class);
 
     @Test
     public void reactorIsSingleThreadedByDefault() {

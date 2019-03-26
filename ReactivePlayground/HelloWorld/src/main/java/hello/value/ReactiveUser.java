@@ -1,4 +1,4 @@
-package hello;
+package hello.value;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
