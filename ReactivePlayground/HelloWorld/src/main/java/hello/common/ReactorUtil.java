@@ -1,6 +1,7 @@
 package hello.common;
 
 import hello.controller.GreetingsController;
+import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,27 +16,26 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
+@Slf4j
 public class ReactorUtil {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(GreetingsController.class);
-
     public static <T> DeferredResult<T> toDeferredResult(final Publisher<T> publisher) {
-        LOGGER.error("Getting deferredresult");
+        log.error("Getting deferredresult");
         DeferredResult<T> deferredResult = new DeferredResult<>();
         Disposable disposable = Flux.from(publisher).subscribeOn(Schedulers.parallel()).subscribe(
                 // normal scenario where Mono returns a value
                 t -> {
-                    System.out.println("Getting result");
+                    log.debug("Getting result");
                     deferredResult.setErrorResult(t);
                 },
                 // error scenario where Mono returns an exception
                 error -> {
-                    System.out.println("Error");
+                    log.error("Error");
                     deferredResult.setErrorResult(error);
                 },
                 // empty Mono (e.g., Mono<Void>, Mono.empty())
                 () -> {
-                    System.out.println("Getting empty");
+                    log.info("Getting empty");
                     if (!deferredResult.hasResult()) {
                         deferredResult.setResult(null);
                     }

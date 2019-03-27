@@ -1,10 +1,11 @@
 package hello.controller;
 
-import hello.value.ReactiveUser;
-import hello.repository.ReactiveUserRepository;
+import com.couchbase.client.java.document.RawJsonDocument;
 import hello.common.ReactorUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import hello.db.CouchbaseConnector;
+import hello.repository.ReactiveUserRepository;
+import hello.value.ReactiveUser;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +19,18 @@ import java.time.Duration;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class GreetingsController {
-
-    private static Logger LOGGER = LoggerFactory.getLogger(GreetingsController.class);
 
     @Autowired
     private ReactiveUserRepository reactiveUserRepository;
 
+    @Autowired
+    private CouchbaseConnector couchbaseConnector;
+
     @GetMapping(value = "/hellosecond/{seconds}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String helloSecond(@PathVariable(value = "seconds") String seconds) {
-        LOGGER.info("Sleeping " + seconds + " seconds.");
+        log.info("Sleeping " + seconds + " seconds.");
         try {
             Thread.sleep(Integer.parseInt(seconds) * 1000);
         } catch (Exception exception) {
@@ -35,21 +38,21 @@ public class GreetingsController {
         }
 
         String returnValue = "Slept " + seconds + " seconds.";
-        LOGGER.info(returnValue);
+        log.info(returnValue);
         return returnValue;
     }
 
     @GetMapping(value = "/hellodb/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Mono<ReactiveUser> helloDbStreamById(@PathVariable(value = "id") String id) {
-        LOGGER.info("Database fetch starting");
+        log.info("Database fetch starting");
         Mono<ReactiveUser> reactiveUsers = reactiveUserRepository.findById(id);
-        LOGGER.info("Database fetch ending");
+        log.info("Database fetch ending");
         return reactiveUsers;
     }
 
     @GetMapping(value = "/hellodbstream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ReactiveUser> helloDbStreamAll() {
-        LOGGER.info("Database fetch starting");
+        log.info("Database fetch starting");
 
         Mono<ReactiveUser> flux1 = reactiveUserRepository.findById("user::1");
         Mono<ReactiveUser> flux1Delayed = Mono.delay(Duration.ofSeconds(2)).then(flux1);
@@ -58,13 +61,13 @@ public class GreetingsController {
 
         Flux<ReactiveUser> reactiveUsersDelayed = Flux.merge(flux1Delayed, flux2Delayed);
 
-        LOGGER.info("Database fetch ending");
+        log.info("Database fetch ending");
         return reactiveUsersDelayed;
     }
 
     @GetMapping(value = "/hellodbasync", produces = MediaType.APPLICATION_JSON_VALUE)
     public DeferredResult<List<ReactiveUser>> helloDbAsyncAll() {
-        LOGGER.info("Database fetch starting");
+        log.info("Database fetch starting");
 
         Mono<ReactiveUser> flux1 = reactiveUserRepository.findById("user::1");
         Mono<ReactiveUser> flux1Delayed = Mono.delay(Duration.ofSeconds(2)).then(flux1);
@@ -75,7 +78,14 @@ public class GreetingsController {
         //DeferredResult<ReactiveUser> deferredResult = ReactorUtil.toDeferredResult(reactiveUsersDelayed);
         DeferredResult<List<ReactiveUser>> deferredResult = ReactorUtil.toDeferredResultList(reactiveUsersDelayed);
 
-        LOGGER.info("Database fetch ending");
+        log.info("Database fetch ending");
+        return deferredResult;
+    }
+
+    @GetMapping(value = "/projectdb", produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeferredResult<RawJsonDocument> helloDbKey() {
+        Mono<RawJsonDocument> monoDocument = couchbaseConnector.get("user::1");
+        DeferredResult<RawJsonDocument> deferredResult = ReactorUtil.toDeferredResult(monoDocument);
         return deferredResult;
     }
 
