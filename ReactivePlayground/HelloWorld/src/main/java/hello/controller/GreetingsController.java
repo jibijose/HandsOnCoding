@@ -70,13 +70,26 @@ public class GreetingsController {
         log.info("Database fetch starting");
 
         Mono<ReactiveUser> flux1 = reactiveUserRepository.findById("user::1");
-        Mono<ReactiveUser> flux1Delayed = Mono.delay(Duration.ofSeconds(2)).then(flux1);
+        Mono<ReactiveUser> flux1Delayed = Mono.delay(Duration.ofSeconds(5)).then(flux1);
         Mono<ReactiveUser> flux2 = reactiveUserRepository.findById("user::2");
         Mono<ReactiveUser> flux2Delayed = Mono.delay(Duration.ofSeconds(1)).then(flux2);
 
         Flux<ReactiveUser> reactiveUsersDelayed = Flux.merge(flux1Delayed, flux2Delayed);
         //DeferredResult<ReactiveUser> deferredResult = ReactorUtil.toDeferredResult(reactiveUsersDelayed);
         DeferredResult<List<ReactiveUser>> deferredResult = ReactorUtil.toDeferredResultList(reactiveUsersDelayed);
+
+        log.info("Database fetch ending");
+        return deferredResult;
+    }
+
+    @GetMapping(value = "/hellodbasyncsingle", produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeferredResult<ReactiveUser> helloDbAsyncSingle() {
+        log.info("Database fetch starting");
+
+        Mono<ReactiveUser> flux1 = reactiveUserRepository.findById("user::1");
+        Mono<ReactiveUser> flux1Delayed = Mono.delay(Duration.ofSeconds(5)).then(flux1);
+
+        DeferredResult<ReactiveUser> deferredResult = ReactorUtil.toDeferredResult(flux1Delayed);
 
         log.info("Database fetch ending");
         return deferredResult;
