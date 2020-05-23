@@ -64,6 +64,7 @@
           </reportPlugins>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
+        <version>3.9.0</version>
       </plugin>
     </plugins>
   </reporting>

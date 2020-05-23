@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <artifactId>WebApplication</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.8.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>validation-api</artifactId>
+      <groupId>javax.validation</groupId>
+    </dependency>
+
+    <!-- Spring AOP + AspectJ -->
+    <dependency>
+      <artifactId>spring-aop</artifactId>
+      <groupId>org.springframework</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>aspectjrt</artifactId>
+      <groupId>org.aspectj</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>aspectjweaver</artifactId>
+      <groupId>org.aspectj</groupId>
+    </dependency>
+
+    <!-- ********************************************************************** -->
+    <dependency>
+      <artifactId>StringUtil</artifactId>
+      <groupId>com.test</groupId>
+      <version>1.0.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <dependency>
+      <artifactId>mockito-core</artifactId>
+      <groupId>org.mockito</groupId>
+      <scope>test</scope>
+      <version>2.23.0</version>
+    </dependency>
+    <!-- ********************************************************************** -->
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -11,69 +75,5 @@
     <groupId>com.test</groupId>
     <version>1.0.0</version>
   </parent>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-    </dependency>
-
-    <!-- Spring AOP + AspectJ -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjrt</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjweaver</artifactId>
-    </dependency>
-
-    <!-- ********************************************************************** -->
-    <dependency>
-      <groupId>com.test</groupId>
-      <artifactId>StringUtil</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>2.23.0</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- ********************************************************************** -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>
