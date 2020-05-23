@@ -20,6 +20,7 @@
 	<module>DataStructuresAlgorithms</module>
 	<module>concurrent</module>
 	<module>FunctionalCheck</module>
+  <module>SpringReactx</module>
   </modules>
   
   <dependencies>
