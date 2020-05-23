@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.test</groupId>
   <artifactId>jdk11playground</artifactId>
-  <version>1.0.0</version>
-  <packaging>pom</packaging>
 
+  <build>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.8.0</version>
+      </plugin>
+    </plugins>
+  </build>
+  <groupId>com.test</groupId>
+  <modelVersion>4.0.0</modelVersion>
   <modules>
     <module>Astro</module>
     <module>Greetings</module>
     <module>spring-petclinic</module>
   </modules>
 
+  <packaging>pom</packaging>
+
   <parent>
-    <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
     <version>2.0.6.RELEASE</version>
-    <relativePath />
   </parent>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
-  <build>
-
-    <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.8.0</version>
-      <configuration>
-        <source>${java.version}</source>
-        <target>${java.version}</target>
-      </configuration>
-    </plugin>
-  </plugins>
-  </build>
 
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <configuration>
           <reportPlugins>
             <plugin>
-              <groupId>org.codehaus.mojo</groupId>
               <artifactId>findbugs-maven-plugin</artifactId>
+              <groupId>org.codehaus.mojo</groupId>
               <version>3.0.1</version>
             </plugin>
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-checkstyle-plugin</artifactId>
+              <groupId>org.apache.maven.plugins</groupId>
               <version>2.15</version>
             </plugin>
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-pmd-plugin</artifactId>
+              <groupId>org.apache.maven.plugins</groupId>
               <version>3.5</version>
             </plugin>
           </reportPlugins>
         </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
       </plugin>
     </plugins>
   </reporting>
+
+  <version>1.0.0</version>
 
 </project>
