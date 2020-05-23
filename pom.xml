@@ -20,6 +20,7 @@
     <module>FunctionalCheck</module>
     <module>SpringReactx</module>
     <module>nio</module>
+    <module>SpringSecurity</module>
   </modules>
 
   <name>HandsOnCoding</name>

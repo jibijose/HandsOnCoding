@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.jibi.test</groupId>
-  <artifactId>FunctionalCheck</artifactId>
+  <artifactId>SpringSecurity</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>FunctionalCheck</name>
+  <name>SpringSecurity</name>
   <url>http://maven.apache.org</url>
 
   <properties>
