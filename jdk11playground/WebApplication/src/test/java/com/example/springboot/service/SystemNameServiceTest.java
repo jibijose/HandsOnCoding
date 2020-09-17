@@ -12,11 +12,10 @@ import org.junit.Assert;
 @RunWith(MockitoJUnitRunner.class)
 public class SystemNameServiceTest {
 
-	@InjectMocks
-	private SystemNameService systemNameService;
-	
-	@Test
-	public void checkSystemName() {
-		Assert.assertEquals("Custom System Name", systemNameService.getSystemName());
-	}
+  @InjectMocks private SystemNameService systemNameService;
+
+  @Test
+  public void checkSystemName() {
+    Assert.assertEquals("Custom System Name", systemNameService.getSystemName());
+  }
 }

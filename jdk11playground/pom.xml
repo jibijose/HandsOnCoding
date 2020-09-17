@@ -23,7 +23,6 @@
   <modules>
     <module>Astro</module>
     <module>Greetings</module>
-    <module>spring-petclinic</module>
   </modules>
 
   <packaging>pom</packaging>

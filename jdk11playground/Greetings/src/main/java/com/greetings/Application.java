@@ -3,7 +3,7 @@ package com.greetings;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.astro.World;
+import org.astro.price.PriceService;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
@@ -15,7 +15,6 @@ public class Application implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    System.out.println("Greetings!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + World.name());
+    System.out.println("Greetings!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + PriceService.getWorldName());
   }
-
 }

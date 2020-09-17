@@ -11,8 +11,7 @@ import com.example.springboot.service.SystemNameService;
 @RestController
 public class HealthController {
 
-  @Autowired
-  public SystemNameService systemNameService;
+  @Autowired public SystemNameService systemNameService;
 
   @RequestMapping("/customisup")
   public final String isServiceUp() {
@@ -25,5 +24,4 @@ public class HealthController {
   public String health() {
     return "Health from Spring Boot!";
   }
-
 }

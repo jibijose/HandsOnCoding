@@ -12,13 +12,11 @@ import com.example.springboot.service.SystemNameService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {MockConfig.class})
 public class SystemNameService2Test {
-	
-	@Autowired
-	SystemNameService systemNameService;
-	
-	@Test
-	public void checkSpringService() {
-		System.out.println(systemNameService.getSystemName());
-	}
 
+  @Autowired SystemNameService systemNameService;
+
+  @Test
+  public void checkSpringService() {
+    System.out.println(systemNameService.getSystemName());
+  }
 }

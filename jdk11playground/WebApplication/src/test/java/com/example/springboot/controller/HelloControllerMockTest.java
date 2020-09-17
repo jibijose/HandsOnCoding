@@ -19,18 +19,18 @@ import com.example.springboot.controller.HelloController;
 @RunWith(MockitoJUnitRunner.class)
 public class HelloControllerMockTest {
 
-	private MockMvc mvc;
-	
-	@Before
-	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
-	}
-	
-	@Test
-	public void getIsUp() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(content().string(startsWith("Greetings from Spring Boot!")));
-	}
+  private MockMvc mvc;
+
+  @Before
+  public void setUp() throws Exception {
+    MockitoAnnotations.initMocks(this);
+    mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
+  }
+
+  @Test
+  public void getIsUp() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().string(startsWith("Greetings from Spring Boot!")));
+  }
 }

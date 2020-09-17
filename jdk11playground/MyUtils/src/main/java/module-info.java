@@ -1,3 +1,1 @@
-module com.test.string {
-
-}
+module com.test.string {}

@@ -22,30 +22,28 @@ import com.example.springboot.service.SystemNameService;
 @RunWith(MockitoJUnitRunner.class)
 public class HealthControllerMockTest {
 
-	private MockMvc mvc;
+  private MockMvc mvc;
 
-	@Mock
-	private SystemNameService systemServiceName;
+  @Mock private SystemNameService systemServiceName;
 
-	@InjectMocks
-	private HealthController healthController;
+  @InjectMocks private HealthController healthController;
 
-	@Before
-	public void setUp() throws Exception {
-		mvc = MockMvcBuilders.standaloneSetup(healthController).build();
-	}
+  @Before
+  public void setUp() throws Exception {
+    mvc = MockMvcBuilders.standaloneSetup(healthController).build();
+  }
 
-	@Test
-	public void getIsUp() throws Exception {
-		//when(systemServiceName.getSystemName()).thenReturn("Mock System Name");
-		
-		healthController.isServiceUp();
-	}
-	
-	@Test
-	public void getHealth() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/health").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(content().string(equalTo("Health from Spring Boot!")));
-	}
+  @Test
+  public void getIsUp() throws Exception {
+    // when(systemServiceName.getSystemName()).thenReturn("Mock System Name");
 
+    healthController.isServiceUp();
+  }
+
+  @Test
+  public void getHealth() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/health").accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().string(equalTo("Health from Spring Boot!")));
+  }
 }

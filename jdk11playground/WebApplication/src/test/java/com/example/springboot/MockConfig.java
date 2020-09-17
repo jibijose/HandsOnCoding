@@ -6,10 +6,13 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
 @Configuration("mockConfig")
-@ComponentScan(basePackages={"com.example.springboot.service", "com.example.springboot.common", "com.example.springboot.web", "com.example.springboot.controller"})
-@Import(value=AppConfig.class)
+@ComponentScan(
+    basePackages = {
+      "com.example.springboot.service",
+      "com.example.springboot.common",
+      "com.example.springboot.web",
+      "com.example.springboot.controller"
+    })
+@Import(value = AppConfig.class)
 @EnableAspectJAutoProxy
-public class MockConfig {
-
-	
-}
+public class MockConfig {}

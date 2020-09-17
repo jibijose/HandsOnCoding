@@ -15,11 +15,10 @@ import com.example.springboot.service.SystemNameService;
 @WebAppConfiguration
 public class HelloControllerSpringTest {
 
-	@Autowired
-	SystemNameService systemNameService;
-	
-	@Test
-	public void checkAop() {
-		systemNameService.getSystemName();
-	}
+  @Autowired SystemNameService systemNameService;
+
+  @Test
+  public void checkAop() {
+    systemNameService.getSystemName();
+  }
 }

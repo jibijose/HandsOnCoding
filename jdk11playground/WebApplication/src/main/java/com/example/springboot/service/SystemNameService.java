@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 
 // TODO: Auto-generated Javadoc
 
-/**
- * The Class SystemNameService.
- */
+/** The Class SystemNameService. */
 @Service
 public class SystemNameService {
 

@@ -17,5 +17,4 @@ public class HelloController {
   public String sayHelloNew(@PathVariable String name) {
     return "Greetings from Spring Boot! " + Util.length(name);
   }
-
 }
