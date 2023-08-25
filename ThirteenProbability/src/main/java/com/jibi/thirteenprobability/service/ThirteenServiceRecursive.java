@@ -2,12 +2,13 @@ package com.jibi.thirteenprobability.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import java.util.Arrays;
 
 @Service
 @Slf4j
-public class ThirteenService {
+public class ThirteenServiceRecursive {
 
     public boolean findContainNumberThirteen(int[] number) {
         for (int index = 0; index < (NUMLENGTH - 1); index++) {
@@ -26,20 +27,27 @@ public class ThirteenService {
         return false;
     }
 
-    int NUMLENGTH = 4;
+    int NUMLENGTH = 10;
     int[] number = new int[NUMLENGTH];
 
     public void findMatches() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
         int numIndex = 0;
         for (int index = 0; index < numValues.length; index++) {
             number[numIndex] = numValues[index];
             //System.out.println("Current number = " + Arrays.toString(number));
             constructNumber(numIndex + 1);
         }
+        System.out.println("*******************************Recursive Mode***********************************");
+        System.out.println("Total Numbers has 13 sum matched [" + totalNumHasSumMatch + "/" + totalNumbersChecked + "]   " + (totalNumHasSumMatch * 100.0 / totalNumbersChecked) + "%");
+        System.out.println("Total Numbers contains 13 match [" + totalNumContainsMatch + "/" + totalNumbersChecked + "]   " + (totalNumContainsMatch * 100.0 / totalNumbersChecked) + "%");
+        System.out.println("Total Numbers has sum 13 and contains 13 match [" + totalNumHasSumAndContainsMatch + "/" + totalNumbersChecked + "]   " + (totalNumHasSumAndContainsMatch * 100.0 / totalNumbersChecked) + "%");
         System.out.println("*****************************************************************************************");
-        System.out.println("Total Numbers has 13 sum matched [" + totalNumHasSumMatch + "/" + totalNumbersChecked + "]   " + (totalNumHasSumMatch*100.0/totalNumbersChecked) + "%");
-        System.out.println("Total Numbers contains 13 match [" + totalNumContainsMatch + "/" + totalNumbersChecked + "]   " + (totalNumContainsMatch*100.0/totalNumbersChecked) + "%");
-        System.out.println("Total Numbers has sum 13 and contains 13 match [" + totalNumHasSumAndContainsMatch + "/" + totalNumbersChecked + "]   " + (totalNumHasSumAndContainsMatch*100.0/totalNumbersChecked) + "%");
+
+        stopWatch.stop();
+        System.out.println("Total execution milli seconds = " + stopWatch.getTotalTimeMillis());
         System.out.println("*****************************************************************************************");
     }
 
@@ -53,15 +61,15 @@ public class ThirteenService {
         if (numIndex >= NUMLENGTH) {
             if (findHasSumThirteen(number)) {
                 totalNumHasSumMatch++;
-                System.out.println("Sum Match Number = " + Arrays.toString(number));
+                //System.out.println("Sum Match Number = " + Arrays.toString(number));
             }
             if (findContainNumberThirteen(number)) {
                 totalNumContainsMatch++;
-                System.out.println("Contains Match Number = " + Arrays.toString(number));
+                //System.out.println("Contains Match Number = " + Arrays.toString(number));
             }
             if (findHasSumThirteen(number) && findContainNumberThirteen(number)) {
                 totalNumHasSumAndContainsMatch++;
-                System.out.println("Sum and contains Match Number = " + Arrays.toString(number));
+                //System.out.println("Sum and contains Match Number = " + Arrays.toString(number));
             }
             totalNumbersChecked++;
             return;
