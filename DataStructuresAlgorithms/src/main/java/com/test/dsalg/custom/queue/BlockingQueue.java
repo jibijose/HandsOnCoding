@@ -88,15 +88,15 @@ public class BlockingQueue<E> implements Queue<E> {
 	@Override
 	public synchronized boolean add(E e) {
 		try {
-			while ( queue.size() == capacity ) {
-				notifyAll();
-				System.out.println("Add waiting for " + e);
+			while ( queue.size() >= capacity ) {
+				//notifyAll();
+				System.out.println("Add waiting for " + e + "     [" + queue.size() + "/" + capacity + "]");
 				wait();
 			}
 		} catch(InterruptedException interruptedException) {
 			return false;
 		}
-		
+		System.out.println("Adding " + e + "     [" + queue.size() + "/" + capacity + "]");
 		queue.add(e);
 		notifyAll();
 		return true;
@@ -117,15 +117,15 @@ public class BlockingQueue<E> implements Queue<E> {
 	@Override
 	public synchronized E poll() {
 		try {
-			while ( queue.size() == 0 ) {
-				notifyAll();
-				System.out.println("Poll waiting");
+			while ( queue.size() <= 0 ) {
+				//notifyAll();
+				System.out.println("Poll waiting     [" + queue.size() + "/" + capacity + "]");
 				wait();
 			}
 		} catch(InterruptedException interruptedException) {
 			return null;
 		}
-		
+		System.out.println("Polling    [" + queue.size() + "/" + capacity + "]");
 		notifyAll();
 		return queue.poll();
 	}
