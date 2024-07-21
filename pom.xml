@@ -15,6 +15,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <modules>
+    <module>PersonalUtils</module>
     <module>JavaPuzzles</module>
     <module>DataStructuresAlgorithms</module>
     <module>concurrent</module>
