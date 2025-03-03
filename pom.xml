@@ -24,6 +24,7 @@
     <module>nio</module>
     <module>SpringSecurity</module>
     <module>ThirteenProbability</module>
+    <module>LeetCode</module>
   </modules>
 
 
