@@ -55,6 +55,16 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.17</version> <!-- Use latest -->
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.5.20</version> <!-- Use latest -->
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -135,7 +145,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>4.0.0-M14</version>
+                    <version>4.0.0-M16</version>
                 </plugin>
             </plugins>
         </pluginManagement>
